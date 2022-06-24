@@ -1,33 +1,44 @@
-void main() {
-  MyApp std1 = MyApp(stdName: "Mark", stdAge: 18);
-  MyApp std2 = MyApp(stdName: "Elon", stdAge: 35, stdId: 102);
-  MyApp std3 = MyApp.stdGpa(stdName: "Jeff", stdAge: 45, stdId: 103);
+import 'package:flutter/material.dart';
 
-  print('${std1.stdName},${std1.stdAge}');
-  print('${std2.stdName},${std2.stdAge},${std2.stdId}');
-  print('${std3.stdName},${std3.stdAge},${std3.stdId},${std3.stdGpa}');
+void main() {
+  runApp(const MyApp());
 }
 
-class MyApp {
-  String? stdName;
-  int? stdAge;
-  int? stdId = 102;
-  int? stdGpa;
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key); //1.Constructor
 
-  //1.Constructor with long hand
-  // MyApp(String name, int age, int id) {
-  //   stdName = name;
-  //   stdAge = age;
-  //   stdId = id;
-  // }
-  //2.Constructor with short hand
-  //MyApp(this.stdName,this.stdAge,this.stdId);
-  //3.Constructor with Named{} optional parameter
-  //MyApp([this.stdName,this.stdAge,this.stdId]);
-  //4.Constructor with Positional[] optional parameter
-  MyApp({required this.stdName, required this.stdAge, this.stdId});
+  @override //2.build
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: "Flutter App",
+      home: myhomepage(),
+    );
+  }
+}
 
-  //5.Named Constructor
-  MyApp.stdGpa({required this.stdName, required this.stdAge, this.stdId})
-      : stdGpa = 4;
+class myhomepage extends StatelessWidget {
+  const myhomepage({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("DOGMAN666"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [Text("Counter"), Text("0")],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (() {}),
+        child: Icon(Icons.add),
+      ),
+    );
+  }
 }
